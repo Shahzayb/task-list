@@ -8,14 +8,14 @@ datasource db {
 }
 
 model todo_item {
-  id            Int                @default(autoincrement()) @id
-  description   String
-  status        todo_item_status   @default(open)
-  due_date      DateTime?
-  reminder_time DateTime?
   category      todo_item_category @default(inbox)
-  shared_with   Int?
   created_by    Int
+  description   String
+  due_date      DateTime?
+  id            Int                @default(autoincrement()) @id
+  reminder_time DateTime?
+  shared_with   Int?
+  status        todo_item_status   @default(open)
   user          user               @relation(fields: [created_by], references: [id])
 
   @@index([created_by], name: "_idx")
@@ -23,17 +23,17 @@ model todo_item {
 
 model user {
   id        Int         @default(autoincrement()) @id
-  username  String      @unique
   password  String
+  username  String      @unique
   todo_item todo_item[]
-}
-
-enum todo_item_status {
-  open
-  done
 }
 
 enum todo_item_category {
   inbox
   shared
+}
+
+enum todo_item_status {
+  open
+  done
 }
