@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model todo_item {
+  id            Int                @default(autoincrement()) @id
+  description   String
+  status        todo_item_status   @default(open)
+  due_date      DateTime?
+  reminder_time DateTime?
+  category      todo_item_category @default(inbox)
+  shared_with   Int?
+  created_by    Int
+  user          user               @relation(fields: [created_by], references: [id])
+
+  @@index([created_by], name: "_idx")
+}
+
+model user {
+  id        Int         @default(autoincrement()) @id
+  username  String      @unique
+  password  String
+  todo_item todo_item[]
+}
+
+enum todo_item_status {
+  open
+  done
+}
+
+enum todo_item_category {
+  inbox
+  shared
+}

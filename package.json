@@ -5,11 +5,27 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prisma:generate": "prisma generate",
+    "prisma:introspect": "prisma introspect",
+    "postprisma:introspect": "npm run prisma:generate"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@prisma/client": "^2.4.1",
+    "bcryptjs": "^2.4.3",
+    "clsx": "^1.1.1",
+    "formik": "^2.1.5",
+    "jsonwebtoken": "^8.5.1",
     "next": "9.5.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "validator": "^13.1.1",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.4.1"
   }
 }
