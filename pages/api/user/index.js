@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 import validator from 'validator';
 import prisma from '../../../prisma/index';
+import getAuthUser from '../../../utils/getAuthUser';
 
 export default async (req, res) => {
   //   create user
@@ -91,10 +92,19 @@ export default async (req, res) => {
   }
   //   get all users
   else if (req.method === 'GET') {
+    const user = await getAuthUser(req);
+    if (!user) {
+      return res.status(401).end();
+    }
     const users = await prisma.user.findMany({
       select: {
         id: true,
         username: true,
+      },
+      where: {
+        id: {
+          not: user.id,
+        },
       },
     });
 

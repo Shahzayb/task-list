@@ -51,3 +51,23 @@ export const postUser = async (user) => {
     return Promise.reject(response);
   }
 };
+
+export const getAllUsers = async () => {
+  const jwtToken = localStorage.getItem('token') || '';
+  if (!jwtToken) {
+    return Promise.reject();
+  }
+  const url = '/api/user';
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  });
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(response);
+  }
+};
