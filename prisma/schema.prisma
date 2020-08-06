@@ -9,6 +9,7 @@ datasource db {
 
 model todo_item {
   category      todo_item_category @default(inbox)
+  created_at    DateTime           @default(now())
   created_by    Int
   description   String
   due_date      DateTime?
@@ -22,10 +23,11 @@ model todo_item {
 }
 
 model user {
-  id        Int         @default(autoincrement()) @id
-  password  String
-  username  String      @unique
-  todo_item todo_item[]
+  created_at DateTime    @default(now())
+  id         Int         @default(autoincrement()) @id
+  password   String
+  username   String      @unique
+  todo_item  todo_item[]
 }
 
 enum todo_item_category {

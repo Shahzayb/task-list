@@ -72,12 +72,18 @@ export default async (req, res) => {
       data: {
         username,
         password: hashPassword,
+        todo_item: {
+          create: {
+            description: 'My first item',
+          },
+        },
       },
       select: {
         id: true,
         username: true,
       },
     });
+
     // create token
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
 

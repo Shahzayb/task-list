@@ -1,9 +1,1 @@
-import React from 'react';
-import withRouteProtection from '../hoc/withRouteProtection';
-import Login from '../components/Forms/Login';
-
-function Index() {
-  return <Login />;
-}
-
-export default withRouteProtection(Index, 'UNAUTHENTICATED_ONLY');
+export { default } from '../components/Screens/Login';
