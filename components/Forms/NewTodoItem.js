@@ -86,7 +86,7 @@ function NewTodoItem({ users }) {
       console.log('values', values);
       mutate(values)
         .then((data) => {
-          console.log(data);
+          router.push('/');
         })
         .finally(() => {
           formik.setSubmitting(false);
