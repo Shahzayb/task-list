@@ -16,7 +16,13 @@ export default async (req, res) => {
         category: 'inbox',
       },
       include: {
-        user: true,
+        user: {
+          select: {
+            created_at: true,
+            id: true,
+            username: true,
+          },
+        },
       },
     });
 

@@ -83,7 +83,6 @@ function NewTodoItem({ users }) {
     initialValues,
     validationSchema,
     onSubmit: (values, formik) => {
-      console.log('values', values);
       mutate(values)
         .then((data) => {
           router.push('/');

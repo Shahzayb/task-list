@@ -7,7 +7,6 @@ import FullWidthSpinner from '../FullWidthSpinner';
 
 function Index() {
   const usersQuery = useGetAllUsers();
-  console.log('usersQuery', usersQuery);
 
   if (usersQuery.isLoading) {
     return <FullWidthSpinner />;
