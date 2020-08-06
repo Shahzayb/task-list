@@ -73,7 +73,7 @@ export const markAsDone = async ({ id }) => {
     },
   });
   if (response.ok) {
-    return response.json();
+    return Promise.resolve(response);
   } else {
     return Promise.reject(response);
   }
@@ -93,7 +93,7 @@ export const markAsOpen = async ({ id }) => {
     },
   });
   if (response.ok) {
-    return response.json();
+    return Promise.resolve(response);
   } else {
     return Promise.reject(response);
   }
